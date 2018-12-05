@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const db = mongoose.connection;
 
 
-mongoose.connect('mongodb://amitk7388:Amitsahu@9654@ds163700.mlab.com:63700/naamras');
+mongoose.connect('mongodb://amitk7388:amit1101@ds163700.mlab.com:63700/naamras')
 
 
 var transportSchema = mongoose.Schema({
