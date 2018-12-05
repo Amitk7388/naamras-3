@@ -5,7 +5,7 @@ const db = mongoose.connection
 var dotenv = require('dotenv').config()
 
 
-mongoose.connect('mongodb://localhost/naamras');
+mongoose.connect('mongodb://amitk7388:Amitsahu@9654@ds163700.mlab.com:63700/naamras');
 
 //creating the Schema for the endusers to get all the details from the form adn it save in schema
 var userSchema = mongoose.Schema({
