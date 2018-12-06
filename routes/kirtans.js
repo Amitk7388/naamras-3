@@ -12,7 +12,7 @@ router.post('/kirtanmanagement', upload.single('image'),  function(req, res, nex
   
     let kirtanName = req.body.kirtanName;
     let kirtanDate = req.body.kirtanDate;
-    let imageName = req.file.filename
+    let imageName = req.file.originalname
     let kirtanVenue = req.body.kirtanVenue
     let kirtanHead = req.body.kirtanHead // this kirtan head would be the kirtan heading which should be in <h1> in html
     let kirtanPara = req.body.kirtanPara // this kirtan Paragraph is => kirtan Paragraph which should be <p></p>  in html

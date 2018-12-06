@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
+var multer = require('multer');
 
 var upload = multer({ dest: 'uploads/' })
 
@@ -12,7 +12,7 @@ router.post('/eventmanagement', upload.single('image'),  function(req, res, next
   
     let eventName = req.body.eventName;
     let eventDate = req.body.eventDate;
-    let imageName = req.file.filename
+    let imageName = req.file.originalname
     let eventVenue = req.body.eventVenue
     let eventHead = req.body.eventHead // this event head would be the event heading which should be in <h1> in html
     let eventPara = req.body.eventPara // this event Para is => event Paragraph which should be <p></p>  in html

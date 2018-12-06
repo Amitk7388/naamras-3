@@ -4,9 +4,31 @@ const localStrategy = require('passport-local').Strategy;
 const passport = require('passport'); 
 const facebookStrategy = require('passport-facebook').Strategy
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+var  multer = require('multer')
 
 let EndUser = require('..//models/enduser');
 let Manager = require('..//models/manager')
+let UserImages = require('..//models/userImage');
+
+
+
+
+
+
+
+// seting the storage destination which is in userImage/uploads
+var storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, "/userImage/uploads")
+    },
+    filename : function(req, file, cb){
+        cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname))
+    }
+})
+
+//giving users image storage files
+var upload = multer({storage : storage});
+
 
 router.get('/signup/api', function(req, res, next){
     res.render('enduser', {
@@ -71,8 +93,8 @@ router.post('/login/api', function(req, res, next){
 
     //form validation with express validator
 
-    req.checkBody('name', 'please enter the name ').notEmpty();
-    req.checkBody('email', 'please enter the email id ').notEmpty().isEmail();
+    req.checkBody('email', 'please enter the email ').notEmpty().isEmail();
+    req.checkBody('password', 'please enter the password ').notEmpty();
 
     Manager.findOne({email: email}, function(err, user){
         if(err){
@@ -181,7 +203,7 @@ router.post('/signup/api', function(req, res, next){
     // creating variable of the user form
     var name = req.body.name;
     var email = req.body.email;
-    var mobile = req.body.mobile
+    var mobile = req.body.mobile;
     var password = req.body.password;
     var repassword = req.body.repassword;
 
@@ -290,6 +312,43 @@ router.post('/auth/google/callback',
   function(req, res) {
     res.redirect('/');
   });
+
+
+//==========================> image uploading API ================================================>
+
+router.post('/imageupload/api', upload.single('userImage'), function(req, res, next){
+    let userImage = req.body.originalname;
+    let userDescript = req.body.userDescript;
+    let status = '0'
+    
+    console.log('something is working');
+    console.log(req.file)
+    
+    // c
+    req.checkBody('userDescript', 'please enter the discription').notEmpty();
+
+    var errors = req.validationErrors();
+
+    if(errors){
+        res.status(500).json({status:false, response:errors, devMessage: 'there is some issue to validate the user information'});
+    }else{
+        var newUserImages = new UserImages({
+            userImage : userImage,
+            userDescript : userDescript,
+            status : status
+        })
+
+
+        UserImages.createUserImage(newUserImages, function(err, imageDone){
+            if(err){
+                res.status(500).json({status:false, response : err, devMessage : 'there is some error while crating user images '})
+            }else{
+                res.status(200).json({status : true, response:imageDone, devMessage : 'userimages has been created and saved in database'})
+            }
+        })
+    }
+})
+
 
 
 
