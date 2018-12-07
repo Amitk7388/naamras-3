@@ -27,6 +27,7 @@ var endUserRouter = require('./routes/endusers');
 var eventsRouter = require('./routes/events');
 var kirtansRouter = require('./routes/kirtans');
 var transportsRouter = require('./routes/transports');
+var calenderRouter = require('./routes/calenders')
 
 const app = express();
 
@@ -81,6 +82,7 @@ app.use('/user', endUserRouter);
 app.use('/events', eventsRouter);
 app.use('/kirtans', kirtansRouter);
 app.use('/transports', transportsRouter);
+app.use('/calender', calenderRouter);
 
 
 // catch 404 and forward to error handler

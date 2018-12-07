@@ -111,7 +111,7 @@ router.post('/login/api', function(req, res, next){
                     )
         }
 
-        if(password === user.password){
+       else if(password === user.password){
             // if password will match this will redirect to manager dashboard
             res.redirect('/managerdasboard/api')
         }else{
