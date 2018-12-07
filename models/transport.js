@@ -9,10 +9,10 @@ mongoose.connect('mongodb://amitk7388:amit1101@ds163700.mlab.com:63700/naamras')
 
 var transportSchema = mongoose.Schema({
     transportDate : {
-        type : Date
+        type : String
     },
     busTime : {
-        type : Date
+        type : String
     },
     busNum : {
         type : String

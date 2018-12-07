@@ -11,7 +11,7 @@ var kirtanSchema = mongoose.Schema({
         type: String
     }, 
     kirtanDate : {
-        type: Date
+        type: String
     },
     imageName : {
         type: String
@@ -26,17 +26,21 @@ var kirtanSchema = mongoose.Schema({
         type: String
     },
     startTime : {
-        type: Date
+        type: String
     },
     endTime : {
-        type : Date
+        type : String
     }, 
     fbLink : {
         type : String
     }, 
     achieveMent : {
         type : String
-    }
+    },
+    created_at: { 
+        type: Date, 
+        default: Date.now 
+    },
 })
 
 

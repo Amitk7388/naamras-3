@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 
-var upload = multer({ dest: 'uploads/' })
+var upload = multer({ dest: 'kirtans/' })
 
 
 var Kirtan = require('..//models/kirtan')
@@ -25,7 +25,7 @@ router.post('/kirtanmanagement', upload.single('image'),  function(req, res, nex
     // form validation of all the users input
     req.checkBody('kirtanName', 'please eneter the kirtan name').notEmpty();
     req.checkBody('kirtanDate', 'please enter the kirtan date').notEmpty();
-    req.checkBody('image', 'please attached the kirtan name').notEmpty();
+    req.checkBody('image', 'please attached the kirtan name')
     req.checkBody('kirtanVenue', 'please enter kirtan venue').notEmpty();
     req.checkBody('kirtanHead', 'please enter the kirtan Head').notEmpty();
     req.checkBody('kirtanPara', 'please eneter the kirtanPara').notEmpty();
@@ -59,7 +59,7 @@ router.post('/kirtanmanagement', upload.single('image'),  function(req, res, nex
             if(err){
                 res.status(500).json({status:false, response:err, devMessage :'err while creating new kirtan'})
             }else{
-                res.status(200).json({status:true, response:kirtans})
+                res.status(200).json({status:true, response:kirtans, devMessage: 'kirtans sucessfully has been created'})
             }
         })
     }

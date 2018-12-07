@@ -25,6 +25,11 @@ var userSchema = mongoose.Schema({
         type : String
         
     },
+    created_at: { 
+        type: Date, 
+        default: Date.now 
+    }
+
    
 
      

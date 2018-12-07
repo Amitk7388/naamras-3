@@ -25,7 +25,7 @@ router.post('/eventmanagement', upload.single('image'),  function(req, res, next
     // form validation of all the users input
     req.checkBody('eventName', 'please eneter the event name').notEmpty();
     req.checkBody('eventDate', 'please enter the event date').notEmpty();
-    req.checkBody('image', 'please attached the image name').notEmpty();
+    req.checkBody('image', 'please attached the image name')
     req.checkBody('eventVenue', 'please enter event venue').notEmpty();
     req.checkBody('eventHead', 'please enter the event Head').notEmpty();
     req.checkBody('eventPara', 'please eneter the eventPara').notEmpty();
@@ -59,7 +59,7 @@ router.post('/eventmanagement', upload.single('image'),  function(req, res, next
             if(err){
                 res.status(500).json({status:false, response:err, devMessage :'err while creating new Event'})
             }else{
-                res.status(200).json({status:true, response:user})
+                res.status(200).json({status:true, response:events, devMessage: 'events has been created sucessfully'})
             }
         })
     }

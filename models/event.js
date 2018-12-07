@@ -11,7 +11,7 @@ var eventSchema = mongoose.Schema({
         type: String
     }, 
     eventDate : {
-        type: Date
+        type: String
     },
     imageName : {
         type: String
@@ -26,16 +26,20 @@ var eventSchema = mongoose.Schema({
         type: String
     },
     startTime : {
-        type: Date
+        type: String
     },
     endTime : {
-        type : Date
+        type : String
     }, 
     fbLink : {
         type : String
     }, 
     achieveMent : {
         type : String
+    },
+    created_at: { 
+        type: Date, 
+        default: Date.now 
     }
 })
 

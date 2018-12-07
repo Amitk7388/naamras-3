@@ -17,6 +17,10 @@ var userSchema = mongoose.Schema({
     },
     mobile : {
         type : String
+    },
+    created_at: { 
+        type: Date, 
+        default: Date.now 
     }
 
 })

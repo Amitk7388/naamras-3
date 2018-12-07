@@ -14,6 +14,10 @@ var imageSchema = mongoose.Schema({
     },
     status : {
         type : String
+    },
+    created_at: { 
+        type: Date, 
+        default: Date.now 
     }
 })
 
